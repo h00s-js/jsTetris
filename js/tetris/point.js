@@ -45,6 +45,6 @@ Point.prototype.rotateClockwise = function() {
 };
 
 Point.prototype.rotateCounterClockwise = function() {
-    setCoordinates(-1 * this.getY(), this.getX());
+    this.setCoordinates(-1 * this.getY(), this.getX());
     return this;
 };
