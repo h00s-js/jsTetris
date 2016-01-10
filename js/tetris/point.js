@@ -1,50 +1,56 @@
-var Point;
-Point = function (x, y) {
-    this.coordinates = [x, y]
-    console.log('created point');
-};
+'use strict';
 
-Point.prototype.getX = function() {
-    return this.coordinates[0];
-};
+class Point {
+    constructor(x, y) {
+        this.coordinates = [x, y];
+    }
 
-Point.prototype.setX = function(x) {
-    this.coordinates[0] = x;
-};
+    copy() {
+        return new Point(this.x, this.y);
+    }
 
-Point.prototype.getY = function() {
-    return this.coordinates[1];;
-};
+    get x() {
+        return this.coordinates[0];
+    }
 
-Point.prototype.setY = function(y) {
-    this.coordinates[1] = y;
-};
+    set x(x) {
+        this.coordinates[0] = x;
+    }
 
-Point.prototype.getCoordinates = function() {
-    return this.coordinates;
-};
+    get y() {
+        return this.coordinates[1];
+    }
 
-Point.prototype.setCoordinates = function(x, y) {
-    this.coordinates[0] = x;
-    this.coordinates[1] = y;
-};
+    set y(y) {
+        this.coordinates[1] = y;
+    }
 
-Point.prototype.addPoint = function(point) {
-    this.setCoordinates(this.getX() + point.getX(), this.getY() + point.getY());
-    return this;
-};
+    getCoordinates() {
+        return this.coordinates;
+    }
 
-Point.prototype.subtractPoint = function(point) {
-    this.setCoordinates(this.getX() - point.getX(), this.getY() - point.getY());
-    return this;
-};
+    setCoordinates(x, y) {
+        this.coordinates[0] = x;
+        this.coordinates[1] = y;
+    }
 
-Point.prototype.rotateClockwise = function() {
-    this.setCoordinates(this.getY(), -1 * this.getX());
-    return this;
-};
+    addPoint(point) {
+        this.setCoordinates(this.x + point.x, this.y + point.y);
+        return this;
+    }
 
-Point.prototype.rotateCounterClockwise = function() {
-    this.setCoordinates(-1 * this.getY(), this.getX());
-    return this;
-};
+    subtractPoint(point) {
+        this.setCoordinates(this.x - point.x, this.y - point.y);
+        return this;
+    }
+
+    rotateClockwise() {
+        this.setCoordinates(this.y, -1 * this.x);
+        return this;
+    }
+
+    rotateCounterClockwise() {
+        this.setCoordinates(-1 * this.y, this.x);
+        return this;
+    }
+}
