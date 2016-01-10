@@ -9,8 +9,14 @@ class Tetrimino {
     }
 
     copy() {
-        //var tetrimino = new TTetrimino(new Point(2, 2));
-        //return tetrimino;
+        var blocks = this.blocks.map(function(block) {
+            return block.copy();
+        });
+        var position = this.position.copy();
+        var offsetData = this.offsetData.slice();
+        var tetrimino = new Tetrimino(blocks, position, offsetData);
+        tetrimino.rotationState = this.rotationState;
+        return tetrimino;
     }
 
     setPosition(position) {
@@ -23,11 +29,12 @@ class Tetrimino {
     }
 
     offsetPosition(position) {
-        for (var block of this.blocks) {
+        var tetrimino = this.copy();
+        for (var block of tetrimino.blocks) {
             block.addPoint(position);
         }
-        this.position.addPoint(position);
-        return this;
+        tetrimino.position.addPoint(position);
+        return tetrimino;
     }
 
     moveLeft() {
@@ -40,6 +47,10 @@ class Tetrimino {
 
     moveDown() {
         return this.offsetPosition(new Point(0, -1));
+    }
+
+    rotate(clockwise) {
+
     }
 }
 
