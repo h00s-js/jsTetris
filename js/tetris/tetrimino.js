@@ -50,7 +50,23 @@ class Tetrimino {
     }
 
     rotate(clockwise) {
-
+        var tetrimino = this.copy();
+        for (var block of tetrimino.blocks) {
+            block.subtractPoint(this.position)
+            if (clockwise) {
+                block.rotateClockwise();
+            }
+            else {
+                block.rotateCounterClockwise();
+            }
+            block.addPoint(this.position);
+            tetrimino.rotationState = (clockwise) ? (tetrimino.rotationState + 1) % 4 : (tetrimino.rotationState + 3) % 4;
+            /*var rotatedTetriminos = []
+            for (var i = 0; i < this.offsetData[0].length; i++) {
+                rotatedTetriminos.push(tetrimino.offsetPosition(new Point(this.offsetData[this.rotationState][i]).subtractPoint(this.offsetData[tetrimino.rotationState][i])));
+            }*/
+            return tetrimino;
+        }
     }
 }
 
