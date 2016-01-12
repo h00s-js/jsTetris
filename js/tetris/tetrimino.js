@@ -9,7 +9,7 @@ class Tetrimino {
     }
 
     copy() {
-        var blocks = this.blocks.map(function(block) {
+        var blocks = this.blocks.map(function (block) {
             return block.copy();
         });
         var position = this.position.copy();
@@ -60,13 +60,14 @@ class Tetrimino {
                 block.rotateCounterClockwise();
             }
             block.addPoint(this.position);
-            tetrimino.rotationState = (clockwise) ? (tetrimino.rotationState + 1) % 4 : (tetrimino.rotationState + 3) % 4;
-            /*var rotatedTetriminos = []
-            for (var i = 0; i < this.offsetData[0].length; i++) {
-                rotatedTetriminos.push(tetrimino.offsetPosition(new Point(this.offsetData[this.rotationState][i]).subtractPoint(this.offsetData[tetrimino.rotationState][i])));
-            }*/
-            return tetrimino;
         }
+        tetrimino.rotationState = (clockwise) ? (tetrimino.rotationState + 1) % 4 : (tetrimino.rotationState + 3) % 4;
+        var rotatedTetriminos = []
+        for (var i = 0; i < this.offsetData[0].length; i++) {
+            var point = (this.offsetData[this.rotationState][i]).subtractPoint(this.offsetData[tetrimino.rotationState][i]);
+            rotatedTetriminos.push(tetrimino.offsetPosition(point));
+        }
+        return rotatedTetriminos;
     }
 }
 
