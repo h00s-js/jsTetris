@@ -142,3 +142,51 @@ class STetrimino extends Tetrimino {
         ]);
     }
 }
+
+class LTetrimino extends Tetrimino {
+    constructor(position) {
+        super([
+            new Block(-1, 0, [255, 115, 18]),
+            new Block(0, 0, [255, 115, 18]),
+            new Block(1, 0, [255, 115, 18]),
+            new Block(0, 1, [255, 115, 18])
+        ], position, [
+            [new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0)],
+            [new Point(0, 0), new Point(1, 0), new Point(1, -1), new Point(0, 2), new Point(1, 2)],
+            [new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0)],
+            [new Point(0, 0), new Point(-1, 0), new Point(-1, -1), new Point(0, 2), new Point(-1, 2)]
+        ]);
+    }
+}
+
+class OTetrimino extends Tetrimino {
+    constructor(position) {
+        super([
+            new Block(-1, 0, [255, 196, 42]),
+            new Block(0, 0, [255, 196, 42]),
+            new Block(1, 0, [255, 196, 42]),
+            new Block(0, 1, [255, 196, 42])
+        ], position, [
+            [new Point(0, 0)],
+            [new Point(0, -1)],
+            [new Point(-1, -1)],
+            [new Point(-1, 0)]
+        ]);
+    }
+}
+
+class ZTetrimino extends Tetrimino {
+    constructor(position) {
+        super([
+            new Block(-1, 0, [250, 30, 30]),
+            new Block(0, 0, [250, 30, 30]),
+            new Block(1, 0, [250, 30, 30]),
+            new Block(0, 1, [250, 30, 30])
+        ], position, [
+            [new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0)],
+            [new Point(0, 0), new Point(1, 0), new Point(1, -1), new Point(0, 2), new Point(1, 2)],
+            [new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0)],
+            [new Point(0, 0), new Point(-1, 0), new Point(-1, -1), new Point(0, 2), new Point(-1, 2)]
+        ]);
+    }
+}
