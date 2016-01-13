@@ -10,3 +10,5 @@ ttetrimino = ttetrimino.setPosition(new Point(4, 6));
 //var moved = ttetrimino.offsetPosition(new Point(2, 3));
 var rotated = ttetrimino.rotate(true);
 console.log("");
+
+var board = new Board();
