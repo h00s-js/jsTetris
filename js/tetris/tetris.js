@@ -12,3 +12,4 @@ var rotated = ttetrimino.rotate(true);
 console.log("");
 
 var board = new Board();
+console.log('');

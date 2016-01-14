@@ -2,8 +2,16 @@
 
 class Board {
     constructor() {
-        const HEIGHT = 22, WIDTH = 10;
+        this.HEIGHT = 22;
+        this.WIDTH = 10;
         this.blocks = [];
+        for (var i = 0; i < this.HEIGHT; i++) {
+            var row = []
+            for (var j = 0; j < this.WIDTH; j++) {
+                row.push(undefined);
+            }
+            this.blocks.push(row);
+        }
 
         //RandomGenerator randomGenerator;
         this.currentTetrimino = undefined;
