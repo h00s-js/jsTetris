@@ -6,7 +6,7 @@ class Board {
         this.WIDTH = 10;
         this.blocks = [];
         for (var i = 0; i < this.HEIGHT; i++) {
-            var row = []
+            var row = [];
             for (var j = 0; j < this.WIDTH; j++) {
                 row.push(undefined);
             }
@@ -57,5 +57,40 @@ class Board {
         for (var block of tetrimino.blocks) {
             this.blocks[block.y][block.x] = block;
         }
+    }
+
+    clearLines() {
+        for (var i = 0; i < this.HEIGHT; i++) {
+            if (this.isLineFull(this.blocks[i])) { // if line is full
+                this.removeLineAt(i);
+                i--; // return to position where was line that was removed
+                this.clearedLines++;
+            }
+        }
+    }
+
+    isLineFull(blocks) {
+        for (var block of blocks) {
+            if (block == undefined) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    removeLineAt(index) {
+        for (var i = index; i < (this.HEIGHT - 1); i++) { // move down all blocks on top of that line
+            this.blocks[i] = this.blocks[i + 1];
+            for (var block of this.blocks[i]) { // update Y position on all block in that line (move down)
+                if (block != undefined) {
+                    block.y = block.y - 1;
+                }
+            }
+        }
+        var row = [];
+        for (var i = 0; i < this.WIDTH; i++) {
+            row.push(undefined);
+        }
+        this.blocks[this.HEIGHT - 1].push(row); // initialize new line on top
     }
 }
