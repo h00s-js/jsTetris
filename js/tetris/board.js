@@ -93,4 +93,37 @@ class Board {
         }
         this.blocks[this.HEIGHT - 1].push(row); // initialize new line on top
     }
+
+    moveCurrentTetriminoLeft() {
+        var tetrimino = this.currentTetrimino.moveLeft();
+        if (this.isValidHorizontalPosition(tetrimino)) {
+            this.currentTetrimino = tetrimino;
+            //updateGhostTetrimino();
+        }
+    }
+
+    moveCurrentTetriminoRight() {
+        var tetrimino = this.currentTetrimino.moveRight();
+        if (this.isValidHorizontalPosition(tetrimino)) {
+            this.currentTetrimino = tetrimino;
+            //updateGhostTetrimino();
+        }
+    }
+
+    moveCurrentTetriminoDown() {
+        var tetrimino = this.currentTetrimino.moveDown();
+        if (this.isValidVerticalPosition(tetrimino)) {
+            this.currentTetrimino = tetrimino;
+            return true;
+        } else {
+            this.place(this.currentTetrimino);
+            this.clearLines();
+            //spawnTetrimino();
+            if (!this.isValidVerticalPosition(this.currentTetrimino)) {
+                this.valid = false;
+            }
+            return false;
+        }
+    }
+
 }
