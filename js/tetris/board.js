@@ -126,4 +126,23 @@ class Board {
         }
     }
 
+    rotateCurrentTetrimino(clockwise) {
+        var tetriminos = (clockwise) ? this.currentTetrimino.rotateClockwise() : this.currentTetrimino.rotateCounterClockwise();
+        for (var tetrimino of tetriminos) {
+            if (this.isValidVerticalPosition(tetrimino) && this.isValidHorizontalPosition(tetrimino)) {
+                this.currentTetrimino = tetrimino;
+                //updateGhostTetrimino();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    rotateCurrentTetriminoClockwise() {
+        return this.rotateCurrentTetrimino(true);
+    }
+
+    rotateCurrentTetriminoCounterClockwise() {
+        return this.rotateCurrentTetrimino(false);
+    }
 }
