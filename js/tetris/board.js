@@ -94,11 +94,21 @@ class Board {
         this.blocks[this.HEIGHT - 1].push(row); // initialize new line on top
     }
 
+    updateGhostTetrimino() {
+        this.ghostTetrimino = this.currentTetrimino.copy();
+        for (var i = this.ghostTetrimino.position.y - 1; i >= 0; i--) {
+            this.ghostTetrimino.setPosition(new Point(this.ghostTetrimino.position.x, i));
+            if (!this.isValidVerticalPosition(this.ghostTetrimino)) {
+                this.ghostTetrimino.setPosition(new Point(this.ghostTetrimino.position.x, i + 1));
+                break;
+            }
+        }
+    }
     moveCurrentTetriminoLeft() {
         var tetrimino = this.currentTetrimino.moveLeft();
         if (this.isValidHorizontalPosition(tetrimino)) {
             this.currentTetrimino = tetrimino;
-            //updateGhostTetrimino();
+            this.updateGhostTetrimino();
         }
     }
 
@@ -106,7 +116,7 @@ class Board {
         var tetrimino = this.currentTetrimino.moveRight();
         if (this.isValidHorizontalPosition(tetrimino)) {
             this.currentTetrimino = tetrimino;
-            //updateGhostTetrimino();
+            this.updateGhostTetrimino();
         }
     }
 
@@ -131,7 +141,7 @@ class Board {
         for (var tetrimino of tetriminos) {
             if (this.isValidVerticalPosition(tetrimino) && this.isValidHorizontalPosition(tetrimino)) {
                 this.currentTetrimino = tetrimino;
-                //updateGhostTetrimino();
+                this.updateGhostTetrimino();
                 return true;
             }
         }
